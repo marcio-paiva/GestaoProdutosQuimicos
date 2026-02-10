@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('storages.index')" :active="request()->routeIs('storages.*')">
                         {{ __('Depósitos') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.*')">
+                        {{ __('Inventário') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -73,6 +77,14 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('storages.index')" :active="request()->routeIs('storages.*')">
+                        {{ __('Depósitos') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.*')">
+                {{ __('Inventário') }}
             </x-responsive-nav-link>
         </div>
 

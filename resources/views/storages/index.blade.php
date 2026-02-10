@@ -19,7 +19,10 @@
             </div>
             <p class="text-sm text-gray-500 font-medium">Local: {{ $storage->location ?? 'Não definido' }}</p>
             <div class="mt-4 pt-4 border-t border-gray-50">
-                <a href="#" class="text-blue-600 text-sm font-bold hover:underline">Ver Inventário →</a>
+                <a href="{{ route('inventory.index', ['storage_id' => $storage->id]) }}" 
+                class="text-blue-600 text-sm font-bold hover:underline">
+                    Ver Inventário →
+                </a>
             </div>
         </div>
     @empty
