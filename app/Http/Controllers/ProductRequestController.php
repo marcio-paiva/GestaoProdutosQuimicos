@@ -71,4 +71,16 @@ class ProductRequestController extends Controller
 
         return redirect()->route('requests.index')->with('success', 'Avaliação registrada!');
     }
+
+    public function showEvaluateForm(ProductRequest $productRequest)
+{
+    /** @var User $user */
+    $user = auth()->user();
+
+    if (!$user->hasRole('avaliador')) {
+        abort(403, 'Acesso negado.');
+    }
+
+    return view('requests.evaluate', compact('productRequest'));
+}
 }

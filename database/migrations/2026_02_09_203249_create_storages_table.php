@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('storages', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Ex: Almoxarifado Central, Lab 01
-            $table->string('location')->nullable(); // Localização física
-            $table->text('notes')->nullable();
+            $table->string('name'); // Ex: Almoxarifado Central, Geladeira B
+            $table->string('location')->nullable(); // Ex: Bloco A, Lab 04
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
