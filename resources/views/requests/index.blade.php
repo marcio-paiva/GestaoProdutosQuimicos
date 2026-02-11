@@ -33,7 +33,7 @@
                     </td>
                     <td class="px-5 py-4 text-right">
                         @if(Auth::user()->hasRole('avaliador') && $req->status == 'pending')
-                            <a href="{{ route('requests.evaluate.form', $req->id) }}" class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded font-bold text-xs hover:bg-indigo-200 transition">
+                            <a href="{{ route('requests.evaluate.form', $req->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold no-underline text-xs inline-flex items-center uppercase tracking-wide">
                                 AVALIAR
                             </a>
                         @endif

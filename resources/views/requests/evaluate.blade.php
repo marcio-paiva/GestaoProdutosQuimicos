@@ -67,13 +67,12 @@
         </div>
 
         <div class="flex justify-end items-center space-x-4 border-t pt-6">
-            <a href="{{ route('requests.index') }}" class="text-sm text-gray-600 underline hover:text-gray-900 font-medium">
+            <a href="{{ route('requests.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition shadow-sm font-bold no-underline text-sm inline-flex items-center border border-gray-300">
                 Cancelar e Voltar
             </a>
             
             <button type="submit" 
-                style="background-color: #1e293b !important; color: white !important; padding: 10px 24px !important; border-radius: 8px !important; font-weight: bold !important; cursor: pointer !important; border: none !important;"
-                class="hover:opacity-90 transition shadow-md">
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition shadow-md font-bold cursor-pointer border-none inline-flex items-center justify-center text-sm h-[40px]">
                 Confirmar Avaliação
             </button>
         </div>

@@ -29,11 +29,19 @@ class StorageController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'location' => 'nullable|string|max:255',
+            'location' => 'required|string|max:255', 
         ]);
 
-        Storage::create($request->all());
+        Storage::create([
+            'name' => $request->name,
+            'location' => $request->location, 
+        ]);
 
-        return redirect()->route('storages.index')->with('success', 'Depósito cadastrado com sucesso!');
+        return redirect()->route('storages.index')->with('success', 'Depósito criado!');
+    }
+
+    public function create()
+    {
+        return view('storages.create');
     }
 }

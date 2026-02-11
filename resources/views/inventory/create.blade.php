@@ -59,14 +59,12 @@
 
         <div class="mt-10 flex justify-end space-x-3 border-t pt-6">
             <a href="{{ route('inventory.index') }}" 
-            class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-bold hover:bg-gray-300 transition"
-            style="display: inline-block; text-align: center;">
-                Cancelar
+                class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-lg transition shadow-sm font-bold no-underline inline-flex items-center justify-center border border-gray-300 text-sm h-[40px]">
+                Cancelar e Voltar
             </a>
 
             <button type="submit" 
-                style="background-color: #16a34a !important; color: white !important; padding: 8px 32px !important; border-radius: 8px !important; font-weight: bold !important; cursor: pointer !important; border: none !important; display: inline-block !important; visibility: visible !important; opacity: 1 !important;"
-                class="hover:opacity-90 transition shadow-lg">
+                class="bg-blue-600 hover:bg-blue-700 text-white min-w-[180px] px-4 py-2 rounded-lg transition shadow-md font-bold cursor-pointer border-none inline-flex items-center justify-center text-sm h-[40px]">
                 Confirmar Entrada
             </button>
         </div>

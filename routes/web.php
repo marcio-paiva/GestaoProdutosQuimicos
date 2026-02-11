@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/storages', [StorageController::class, 'index'])->name('storages.index');
     Route::post('/storages', [StorageController::class, 'store'])->name('storages.store');
+    Route::get('/storages/create', [StorageController::class, 'create'])->name('storages.create');
+
 
     Route::resource('inventory', InventoryController::class);
     

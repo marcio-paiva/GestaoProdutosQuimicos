@@ -6,13 +6,13 @@
         <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">Depósitos</h2>
         <p class="text-gray-500 mt-1">Monitore a ocupação e capacidade dos locais de armazenamento.</p>
     </div>
-    <button onclick="document.getElementById('modalStorage').classList.remove('hidden')" 
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold border-none cursor-pointer">
+    <a href="{{ route('storages.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold no-underline inline-flex items-center">
         Novo Depósito
-    </button>
+    </a>
 </div>
 
-<div class="mb-12"> <div class="w-full">
+<div class="mb-12"> 
+    <div class="w-full">
         <input type="text" id="searchInput" onkeyup="filterStorages()" 
                class="block w-full px-6 py-4 border border-gray-200 rounded-2xl leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent sm:text-sm transition-all shadow-sm font-medium" 
                placeholder="Digite o nome do depósito para buscar...">
@@ -74,37 +74,6 @@
             </div>
         </div>
     @endforeach
-</div>
-
-<div id="modalStorage" class="hidden fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-md flex items-center justify-center z-50 p-4">
-    <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md border border-gray-100">
-        <div class="flex justify-between items-center mb-10">
-            <h3 class="text-2xl font-black text-gray-800 tracking-tight">Novo Depósito</h3>
-            <button onclick="document.getElementById('modalStorage').classList.add('hidden')" class="text-gray-400 hover:text-red-500 transition-colors border-none bg-transparent cursor-pointer">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-        </div>
-
-        <form action="{{ route('storages.store') }}" method="POST">
-            @csrf
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Identificação</label>
-                    <input type="text" name="name" required class="w-full bg-gray-50 border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all shadow-inner font-bold text-sm" placeholder="Ex: Almoxarifado Central">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Localização</label>
-                    <input type="text" name="location" class="w-full bg-gray-50 border-transparent rounded-2xl p-4 focus:bg-white focus:ring-2 focus:ring-blue-500 transition-all shadow-inner font-bold text-sm" placeholder="Ex: Bloco B - Piso 1">
-                </div>
-            </div>
-            
-            <div class="mt-10">
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold border-none cursor-pointer">
-                    Salvar Registro
-                </button>
-            </div>
-        </form>
-    </div>
 </div>
 
 <script>
