@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Solicitação')
 @section('content')
 <div class="flex justify-between items-center mb-6">
     <h2 class="text-2xl font-semibold text-gray-800">Minhas Solicitações</h2>

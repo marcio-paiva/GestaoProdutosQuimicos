@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Inventário')
 @section('content')
 <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 border border-gray-200">
     <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">Entrada de Material em Estoque</h2>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Avaliação')
 @section('content')
 <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 border border-gray-200">
     <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Avaliação Técnica de Produto</h2>

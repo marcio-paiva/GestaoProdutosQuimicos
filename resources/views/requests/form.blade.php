@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Solicitação')
 @section('content')
 <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-8 border border-gray-200">
     <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">Preencher Solicitação</h2>

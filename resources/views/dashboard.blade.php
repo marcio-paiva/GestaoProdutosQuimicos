@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Início')
 @section('content')
 <div class="px-2">
     <div class="mb-8">
