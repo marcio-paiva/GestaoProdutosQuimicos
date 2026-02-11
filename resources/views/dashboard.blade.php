@@ -7,44 +7,44 @@
         <p class="text-gray-500 font-medium">Resumo operacional do sistema</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <div class="flex flex-row space-x-4 mb-10 overflow-x-auto pb-4 md:pb-0">
         
-        <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02]">
+        <div class="flex-1 min-w-[250px] bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02] h-32">
             <div>
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total de Produtos</p>
                 <h3 class="text-3xl font-black text-gray-800 mt-1">{{ $totalProducts }}</h3>
             </div>
-            <div class="bg-blue-50 p-4 rounded-2xl text-blue-600">
+            <div class="bg-blue-50 p-4 rounded-2xl text-blue-600 shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02]">
+        <div class="flex-1 min-w-[250px] bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02] h-32">
             <div>
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pendentes</p>
                 <h3 class="text-3xl font-black text-gray-800 mt-1">{{ $pendingRequests }}</h3>
             </div>
-            <div class="bg-amber-50 p-4 rounded-2xl text-amber-600">
+            <div class="bg-amber-50 p-4 rounded-2xl text-amber-600 shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02]">
+        <div class="flex-1 min-w-[250px] bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02] h-32">
             <div>
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Aprovados</p>
                 <h3 class="text-3xl font-black text-gray-800 mt-1">{{ $approvedProducts }}</h3>
             </div>
-            <div class="bg-green-50 p-4 rounded-2xl text-green-600">
+            <div class="bg-green-50 p-4 rounded-2xl text-green-600 shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02]">
+        <div class="flex-1 min-w-[250px] bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex items-center justify-between transition-transform hover:scale-[1.02] h-32">
             <div>
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Alertas Validade</p>
                 <h3 class="text-3xl font-black text-gray-800 mt-1">{{ $validityAlerts }}</h3>
             </div>
-            <div class="bg-red-50 p-4 rounded-2xl text-red-600">
+            <div class="bg-red-50 p-4 rounded-2xl text-red-600 shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             </div>
         </div>

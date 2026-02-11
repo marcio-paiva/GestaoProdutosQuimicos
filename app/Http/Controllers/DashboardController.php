@@ -23,7 +23,6 @@ class DashboardController extends Controller
         // 4. Alertas de Validade (próximos 30 dias)
         $validityAlerts = \App\Models\Inventory::whereNotNull('expiration_date')
             ->where('expiration_date', '<=', now()->addDays(30))
-            ->where('expiration_date', '>=', now())
             ->count();
 
         // CORREÇÃO: Removemos o 'product' do with() pois a relação não existe
