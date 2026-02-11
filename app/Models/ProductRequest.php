@@ -11,13 +11,13 @@ class ProductRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'product_name',
-        'cas_number',
-        'justification',
-        'status',
-        'evaluator_feedback',
-        'evaluator_id'
+        'product_name', 'cas_number', 'justification', 'user_id', 'status',
+        'controlled_by', 'product_type', 'fds_revision_date', 'pictograms', 'safety_precautions'
+    ];
+
+    // multiseleção 
+    protected $casts = [
+        'pictograms' => 'array',
     ];
 
     // Relacionamento: Quem solicitou

@@ -13,8 +13,20 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Início') }}
                     </x-nav-link>
+
+                    @if(Auth::user()->hasRole('solicitante'))
+                        <x-nav-link :href="route('requests.create')" :active="request()->routeIs('requests.create')">
+                            {{ __('Solicitar Avaliação') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if(Auth::user()->hasRole('avaliador'))
+                        <x-nav-link :href="route('requests.index')" :active="request()->routeIs('requests.index')">
+                            {{ __('Avaliar') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-nav-link :href="route('storages.index')" :active="request()->routeIs('storages.*')">
                         {{ __('Depósitos') }}

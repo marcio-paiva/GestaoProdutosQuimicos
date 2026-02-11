@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-6">
-    <h2 class="text-2xl font-semibold text-gray-800">Avaliar Solicitações</h2>
-    <p class="text-gray-500 text-sm">Lista de produtos aguardando parecer técnico ou já avaliados.</p>
+<div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">Minhas Solicitações</h2>
+    
+    <a href="{{ route('requests.form') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold">
+        + Nova Solicitação
+    </a>
 </div>
 
 <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
@@ -12,9 +15,8 @@
             <tr class="bg-gray-50 border-b border-gray-200 text-gray-600 text-left text-xs uppercase font-bold tracking-wider">
                 <th class="px-5 py-4">Produto</th>
                 <th class="px-5 py-4">CAS</th>
-                <th class="px-5 py-4">Solicitante</th>
                 <th class="px-5 py-4 text-center">Status</th>
-                <th class="px-5 py-4 text-right">Ações</th>
+                <th class="px-5 py-4 text-right">Data</th>
             </tr>
         </thead>
         <tbody class="text-gray-700 divide-y divide-gray-200">
@@ -22,7 +24,6 @@
                 <tr class="hover:bg-gray-50 transition">
                     <td class="px-5 py-4 text-sm font-bold">{{ $req->product_name }}</td>
                     <td class="px-5 py-4 text-sm text-gray-500">{{ $req->cas_number ?? 'N/A' }}</td>
-                    <td class="px-5 py-4 text-sm">{{ $req->requester->name }}</td>
                     <td class="px-5 py-4 text-center">
                         <span class="px-3 py-1 rounded-full text-xs font-bold uppercase
                             {{ $req->status == 'approved' ? 'bg-green-100 text-green-700' : '' }}
@@ -31,17 +32,13 @@
                             {{ $req->status }}
                         </span>
                     </td>
-                    <td class="px-5 py-4 text-right">
-                        @if(Auth::user()->hasRole('avaliador') && $req->status == 'pending')
-                            <a href="{{ route('requests.evaluate.form', $req->id) }}" class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded font-bold text-xs hover:bg-indigo-200 transition">
-                                AVALIAR
-                            </a>
-                        @endif
+                    <td class="px-5 py-4 text-right text-xs text-gray-500">
+                        {{ $req->created_at->format('d/m/Y H:i') }}
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="px-5 py-10 text-center text-gray-500 italic bg-white">Nenhuma solicitação encontrada.</td>
+                    <td colspan="4" class="px-5 py-10 text-center text-gray-500 italic bg-white">Você ainda não realizou nenhuma solicitação.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductRequestController extends Controller
 {
-    // Listar solicitações (Dashboard)
+    // Listar solicitações 
     public function index()
     {
         /** @var User $user */
@@ -26,25 +26,35 @@ class ProductRequestController extends Controller
         return view('requests.index', compact('requests'));
     }
 
+    public function create()
+    {
+        $requests = ProductRequest::where('user_id', auth()->id())->latest()->get();
+
+        return view('requests.create', compact('requests'));
+    }
+
     // Salvar a solicitação (Ação do Solicitante)
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'product_name' => 'required|string|max:255',
-            'cas_number' => 'nullable|string|max:20',
-            'justification' => 'required|string',
-        ]);
+        {
+            $validated = $request->validate([
+                'product_name' => 'required|string|max:255',
+                'cas_number'   => 'nullable|string|max:50',
+                'justification' => 'required|string',
+                'controlled_by' => 'nullable|string',
+                'product_type'  => 'nullable|string',
+                'fds_revision_date' => 'nullable|date',
+                'pictograms'    => 'nullable|array',
+                'safety_precautions' => 'nullable|string',
+            ]);
 
-        ProductRequest::create([
-            'user_id' => Auth::id(),
-            'product_name' => $validated['product_name'],
-            'cas_number' => $validated['cas_number'],
-            'justification' => $validated['justification'],
-            'status' => 'pending',
-        ]);
+            // Adiciona o usuário logado
+            $validated['user_id'] = auth()->id();
+            $validated['status'] = 'pending';
 
-        return redirect()->route('requests.index')->with('success', 'Solicitação enviada com sucesso!');
-    }
+            ProductRequest::create($validated);
+
+            return redirect()->route('requests.create')->with('success', 'Solicitação enviada para avaliação técnica!');
+        }
 
     // Avaliar a solicitação (Ação do Avaliador)
     public function evaluate(Request $request, ProductRequest $productRequest)

@@ -16,12 +16,20 @@
         @endif
     </div>
     <a href="{{ route('inventory.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold">
-        + Entrada de Estoque
+        Entrada de Estoque
     </a>
 </div>
 
+<div class="mb-8">
+    <div class="w-full">
+        <input type="text" id="productSearch" onkeyup="filterProducts()" 
+               class="block w-full px-6 py-4 border border-gray-200 rounded-2xl leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent sm:text-sm transition-all shadow-sm font-medium" 
+               placeholder="Digite o nome do produto para buscar no estoque...">
+    </div>
+</div>
+
 <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-    <table class="min-w-full leading-normal">
+    <table class="min-w-full leading-normal" id="inventoryTable">
         <thead>
             <tr class="bg-gray-50 border-b border-gray-200 text-gray-600 text-left text-xs uppercase font-bold tracking-wider">
                 <th class="px-5 py-4">Produto</th>
@@ -33,8 +41,8 @@
         </thead>
         <tbody class="text-gray-700 divide-y divide-gray-200">
             @forelse($inventoryItems as $item)
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-5 py-4 text-sm font-bold">{{ $item->product->name }}</td>
+                <tr class="hover:bg-gray-50 transition product-row">
+                    <td class="px-5 py-4 text-sm font-bold product-name">{{ $item->product->name }}</td>
                     <td class="px-5 py-4 text-sm">{{ $item->storage->name }}</td>
                     <td class="px-5 py-4 text-sm font-semibold">
                         {{ number_format($item->quantity, 2, ',', '.') }} {{ $item->unit }}
@@ -66,4 +74,20 @@
         </tbody>
     </table>
 </div>
+
+<script>
+function filterProducts() {
+    let input = document.getElementById('productSearch');
+    let filter = input.value.toLowerCase();
+    let rows = document.getElementsByClassName('product-row');
+
+    for (let i = 0; i < rows.length; i++) {
+        let nameElement = rows[i].querySelector('.product-name');
+        if (nameElement) {
+            let name = nameElement.innerText.toLowerCase();
+            rows[i].style.display = name.includes(filter) ? "" : "none";
+        }
+    }
+}
+</script>
 @endsection
