@@ -1,57 +1,77 @@
-# CSI606-2025-02 - Proposta de Trabalho Final
-
-**Discente:** Márcio Paiva 23.1.8012
+# Sistema de Gestão de Produtos Químicos
 
 ## Resumo
-
-O **Sistema de Gerenciamento de Produtos Químicos (SGPC)** é um software essencial para o controle eficiente e seguro de substâncias químicas em ambientes corporativos e industriais. O projeto visa centralizar o controle sobre o **uso, armazenamento e inventário** de químicos, garantindo a **conformidade regulatória** e a **segurança operacional**. O Escopo Mínimo Viável (MVP) concentra-se em estabelecer o fluxo de trabalho crucial: gestão de acesso por perfis (Solicitante, Avaliador e Administrador), o processo de **solicitação e avaliação** de novos produtos, e a base do controle de **inventário** e **depósitos**.
+O projeto busca centralizar e profissionalizar o controle de reagentes e substâncias químicas em ambientes laboratoriais ou industriais. O sistema permite a gestão rigorosa de inventário, o controle de armazenamento em múltiplos depósitos e, principalmente, um fluxo de aprovação que garante o controle de segurança aos utilizadores e ao meio ambiente, orientado completamente pela [Ficha de Dados de Segurança](https://tailwindcss.com). O sistema utiliza uma interface limpa e intuitiva, inspirada em dashboards modernos, garantindo que usuários com diferentes níveis de permissão possam operar de forma eficiente e segura.
 
 ---
 
-## 1. Tema
+## 1. Funcionalidades Implementadas
+* **Gestão de Acessos:** Sistema de permissões baseado em funções (**Solicitante, Avaliador e Administrador/ADM**).
+* **Controle de Depósitos:** Criação e monitoramento de locais de armazenamento com indicadores visuais de ocupação.
+* **Inventário Detalhado:** Registro de produtos vinculados a depósitos específicos, com campos para controle de validade e quantidade.
+* **Gestão de Documentação (FDS):** Download do resumo da Fichas de Dados de Segurança vinculada a cada reagente.
+* **Fluxo de Solicitação:** Sistema para solicitar a avaliação de novos produtos ou entradas de estoque.
+* **Segurança e Auditoria:** Rastreamento de "Último Acesso" e controle de status de usuários (Ativo/Inativo).
 
-O trabalho final tem como tema o desenvolvimento de um **Sistema de Gerenciamento de Produtos Químicos (SGPC)**.
 
-## 2. Escopo (MVP)
 
-Este projeto terá as seguintes funcionalidades como foco para o Mínimo Produto Viável (MVP):
+---
 
-### A. Gestão de Acesso e Usuários
-* **Login e Autenticação:** Sistema de acesso seguro para usuários.
-* **Perfis de Acesso:** Implementação dos perfis **Solicitante**, **Avaliador** (Técnico Especializado) e **Administrador**, com permissões e visualizações distintas.
+## 2. Funcionalidades Previstas e Não Implementadas
+* **Relatórios em PDF:** Exportação automática de relatórios de inventário e logs de movimentação.
+* **Layout Lateral (Sidebar):** Embora previsto no protótipo inicial, optou-se por manter o menu superior para preservar a integridade visual e a fluidez de navegação sem a necessidade de refatoração estrutural profunda.
 
-### B. Gestão de Produtos e Inventário
-* **Cadastro Detalhado de Produtos Químicos:** Registro de informações básicas de identificação e segurança de cada substância.
-* **Cadastro de Depósitos/Áreas de Armazenamento:** Mapeamento das localizações físicas dos produtos.
-* **Controle de Inventário:** Funcionalidade para rastrear a localização exata, a quantidade atual (entrada/saída) e o status de cada produto químico.
+---
 
-### C. Fluxo de Trabalho de Produtos
-* **Solicitação de Avaliação:** Módulo para que o usuário Solicitante inicie o pedido de inclusão ou uso de um novo produto químico.
-* **Avaliação de Produtos:** Módulo para o Avaliador analisar a solicitação, registrando parecer técnico (aprovação/reprovação) com base em critérios de segurança e regulamentação (esta funcionalidade é a base para garantir a conformidade).
+## 3. Outras Funcionalidades Implementadas
+* **Interface Customizada:** Implementação de identidade visual própria utilizando o azul padrão (`#2563EB`) e ícones vetoriais customizados (SVG) para o setor químico.
+* **Feedback ao Usuário:** Implementação de *Flash Messages* e blocos de erro para validação de formulários (como a confirmação de senha no cadastro de usuários).
 
-## 3. Restrições
+---
 
-Neste trabalho, não serão considerados, no escopo do MVP:
-* **Módulo de Segurança e Saúde Avançado:** Alertas em tempo real sobre incompatibilidade química ou a gestão detalhada de Equipamentos de Proteção Individual (EPIs) necessários para o manuseio.
-* **Integração com Sistemas Externos:** Não será realizada integração com APIs regulatórias externas (ex: consulta automática de FISPQ de fornecedores) ou sistemas de gestão empresarial (ERP).
-* **Geração de Relatórios Complexos:** O foco inicial será no cadastro e no fluxo de trabalho. Relatórios de conformidade e uso histórico complexos serão considerados em fases futuras.
-* **Desenvolvimento de Módulos Secundários:** A área de FDS (FISPQ) no menu será implementada inicialmente apenas para consulta e cadastro manual básico, sem funcionalidades avançadas de indexação ou pesquisa.
+## 4. Principais Desafios e Dificuldades
+* **Arquitetura MVC:** Organizar a lógica de negócios para que o Admin pudesse gerenciar usuários sem ser deslogado (separando o fluxo de "Auto-registro" do fluxo de "Gestão Administrativa").
+* **Consistência de UI/UX:** Transpor o design idealizado no Figma para o Tailwind CSS, garantindo que os formulários de adição de usuários seguissem o mesmo padrão visual dos formulários de depósito.
+* **Customização do Laravel Breeze:** Adaptar o sistema de autenticação padrão para suportar campos administrativos extras (`role`, `department`, `job_title`).
 
-## 4. Protótipo
+---
 
-Protótipos para as páginas essenciais do SGPC foram elaborados, abrangendo as áreas críticas do sistema. O protótipo visualiza as seguintes telas principais:
+## 5. Instruções para Instalação e Execução
 
-1.  **Tela de Login.**
-2.  **Dashboard (Início).**
-3.  **Fluxo de Solicitação e Avaliação** (Telas: Solicitar Avaliação e Avaliar).
-4.  **Gestão de Infraestrutura** (Telas: Depósitos e Inventário).
-5.  **Gestão de Acesso** (Tela: Acessos).
+### Pré-requisitos
+* **Docker** e **Docker Compose** instalados.
+* **PHP 8.2+** e **Composer**.
 
-O protótipo completo, incluindo o menu de navegação lateral (conforme imagem anexada), pode ser encontrado em:
+### Passo a Passo
+1.  **Clonar o repositório:**
+    ```bash
+    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+    cd seu-repositorio
+    ```
+2.  **Configurar o ambiente:**
+    ```bash
+    cp .env.example .env
+    # Ajustar variáveis de banco de dados (DB_HOST=mysql, etc.)
+    ```
+3.  **Subir os contêineres:**
+    ```bash
+    ./vendor/bin/sail up -d
+    ```
+4.  **Instalar dependências e gerar chaves:**
+    ```bash
+    sail composer install
+    sail npm install && sail npm run build
+    sail artisan key:generate
+    ```
+5.  **Executar Migrations:**
+    ```bash
+    sail artisan migrate
+    ```
 
-**Link do Figma:**
-[https://www.figma.com/community/file/1572984026426734050](https://www.figma.com/community/file/1572984026426734050)
+---
 
-## 5. Referências
-
--
+## 6. Referências
+* **Laravel Documentation:** [laravel.com/docs](https://laravel.com/docs)
+* **Tailwind CSS:** [tailwindcss.com](https://tailwindcss.com)
+* **Lucide Icons:** [lucide.dev](https://lucide.dev)
+* **Docker Sail:** [laravel.com/docs/sail](https://laravel.com/docs/sail)
