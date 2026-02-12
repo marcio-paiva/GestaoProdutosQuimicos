@@ -13,14 +13,12 @@ class InventoryController extends Controller
     {
         $query = Inventory::with(['product', 'storage']);
 
-        // Se vier um ID de depósito pelo link, filtra a consulta
         if ($request->has('storage_id')) {
             $query->where('storage_id', $request->storage_id);
         }
 
         $inventoryItems = $query->get();
         
-        // Opcional: Pegar o nome do depósito para mostrar um título amigável
         $filteredStorage = $request->has('storage_id') 
             ? \App\Models\Storage::find($request->storage_id)?->name 
             : null;
@@ -30,7 +28,7 @@ class InventoryController extends Controller
 
     public function create()
     {
-        // Apenas produtos que já foram aprovados podem entrar no inventário
+        //só produtos aprovados podem entrar no inventário
         $products = ChemicalProduct::where('is_approved', true)->get();
         $storages = Storage::all();
         return view('inventory.create', compact('products', 'storages'));

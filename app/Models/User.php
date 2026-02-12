@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,7 +25,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'last_login_at' => 'datetime', // Cast para trabalhar como Carbon
+        'last_login_at' => 'datetime', 
     ];
 
     protected $hidden = [
@@ -34,7 +33,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // Helper para verificar permissão
     public function hasRole(string $role): bool
     {
         return $this->role === $role;

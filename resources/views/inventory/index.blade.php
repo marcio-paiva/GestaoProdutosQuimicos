@@ -53,12 +53,11 @@
                             @php
                                 $daysToExpire = \Carbon\Carbon::now()->diffInDays($item->expiration_date, false);
                                 
-                                // Definindo as classes de badge baseadas no prazo
                                 $badgeClass = $daysToExpire < 0 
-                                    ? 'bg-red-50 text-red-600' // Vencido
+                                    ? 'bg-red-50 text-red-600' 
                                     : ($daysToExpire < 30 
-                                        ? 'bg-orange-50 text-orange-600' // Alerta (menos de 30 dias)
-                                        : 'bg-green-50 text-green-600'); // No prazo
+                                        ? 'bg-orange-50 text-orange-600' 
+                                        : 'bg-green-50 text-green-600'); 
                             @endphp
                             <span class="px-3 py-1 rounded-full text-[9px] font-bold uppercase {{ $badgeClass }}">
                                 {{ \Carbon\Carbon::parse($item->expiration_date)->format('d/m/Y') }}

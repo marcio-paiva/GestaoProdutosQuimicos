@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inventory;
 use App\Models\ChemicalProduct;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\Pdf; // Importação da biblioteca de PDF
+use Barryvdh\DomPDF\Facade\Pdf; //biblioteca de PDF
 
 class FdsController extends Controller
 {
@@ -30,7 +28,7 @@ class FdsController extends Controller
     {
         $product = ChemicalProduct::findOrFail($id);
 
-        // Formata o nome do arquivo (ex: fds-acetona.pdf)
+        //nome do arquivo (ex: fds-acetona.pdf)
         $fileName = 'fds-' . \Illuminate\Support\Str::slug($product->name) . '.pdf';
 
         $pdf = Pdf::loadView('fds.pdf_individual', compact('product'));

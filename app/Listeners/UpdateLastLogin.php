@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use Illuminate\Auth\Events\Login;
 use Carbon\Carbon;
 
 class UpdateLastLogin

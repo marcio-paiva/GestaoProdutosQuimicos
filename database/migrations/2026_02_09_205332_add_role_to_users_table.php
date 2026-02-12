@@ -9,7 +9,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // Adiciona a coluna role logo após a coluna email
             $table->string('role')->default('solicitante')->after('email');
         });
     }

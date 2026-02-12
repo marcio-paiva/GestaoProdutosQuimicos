@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('product_requests', function (Blueprint $table) {
-            $table->string('controlled_by')->nullable(); // Exército, PF, etc.
-            $table->string('product_type')->nullable(); // Tinta, Lubrificante, etc.
+            $table->string('controlled_by')->nullable(); 
+            $table->string('product_type')->nullable(); 
             $table->date('fds_revision_date')->nullable();
-            $table->json('pictograms')->nullable(); // Para multiseleção (GHS01, GHS02...)
-            $table->text('safety_precautions')->nullable(); // Cuidados e recomendações
+            $table->json('pictograms')->nullable(); 
+            $table->text('safety_precautions')->nullable(); 
         });
     }
 

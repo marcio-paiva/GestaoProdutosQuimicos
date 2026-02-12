@@ -20,13 +20,13 @@ class ProductRequest extends Model
         'pictograms' => 'array',
     ];
 
-    // Relacionamento: Quem solicitou
+    //Quem solicitou
     public function requester(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Relacionamento: Quem avaliou
+    //Quem avaliou
     public function evaluator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'evaluator_id');

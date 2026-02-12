@@ -11,7 +11,7 @@ class StorageController extends Controller
     {
         $storages = Storage::withCount('inventory')->get();
         
-        // Seleciona o primeiro depósito por padrão ou o que foi clicado
+        //primeiro depósito por padrão ou o que foi clicado
         $selectedStorageId = $request->get('selected', $storages->first()?->id);
         
         $selectedStorage = null;

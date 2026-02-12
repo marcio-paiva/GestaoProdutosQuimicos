@@ -10,7 +10,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Cria um Solicitante
         User::create([
             'name' => 'Marcio Solicitante',
             'email' => 'marcio@gmail.com',
@@ -18,12 +17,18 @@ class DatabaseSeeder extends Seeder
             'role' => 'solicitante',
         ]);
 
-        // Cria um Avaliador
         User::create([
             'name' => 'Tech Avaliador',
             'email' => 'tech@gmail.com',
             'password' => Hash::make('1234'),
             'role' => 'avaliador',
+        ]);
+
+        User::create([
+            'name' => 'Administrador',
+            'email' => 'adm@gmail.com',
+            'password' => Hash::make('1234'),
+            'role' => 'adm',
         ]);
     }
 }

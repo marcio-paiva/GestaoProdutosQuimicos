@@ -10,13 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductRequestController extends Controller
 {
-    // Listar solicitações 
     public function index()
     {
         /** @var User $user */
         $user = Auth::user();
 
-        // Agora o PHP sabe que $user tem o método hasRole
         if ($user->hasRole('solicitante')) {
             $requests = ProductRequest::where('user_id', $user->id)->latest()->get();
         } else {
@@ -33,7 +31,6 @@ class ProductRequestController extends Controller
         return view('requests.create', compact('requests'));
     }
 
-    // Salvar a solicitação (Ação do Solicitante)
     public function store(Request $request)
         {
             $validated = $request->validate([
@@ -47,7 +44,6 @@ class ProductRequestController extends Controller
                 'safety_precautions' => 'nullable|string',
             ]);
 
-            // Adiciona o usuário logado
             $validated['user_id'] = auth()->id();
             $validated['status'] = 'pending';
 
@@ -56,7 +52,6 @@ class ProductRequestController extends Controller
             return redirect()->route('requests.create')->with('success', 'Solicitação enviada para avaliação técnica!');
         }
 
-    // Avaliar a solicitação (Ação do Avaliador)
     public function evaluate(Request $request, ProductRequest $productRequest)
     {
         $validated = $request->validate([
@@ -70,14 +65,13 @@ class ProductRequestController extends Controller
             'evaluator_id' => Auth::id(),
         ]);
 
-        // Se aprovado, cria o registro com TODOS os campos técnicos
         if ($validated['status'] === 'approved') {
             ChemicalProduct::create([
                 'name'               => $productRequest->product_name,
                 'cas_number'         => $productRequest->cas_number,
-                'fds_revision_date'  => $productRequest->fds_revision_date, // Faltava este
-                'pictograms'         => $productRequest->pictograms,        // Faltava este
-                'safety_precautions' => $productRequest->safety_precautions, // Faltava este
+                'fds_revision_date'  => $productRequest->fds_revision_date, 
+                'pictograms'         => $productRequest->pictograms,      
+                'safety_precautions' => $productRequest->safety_precautions, 
                 'is_approved'        => true,
             ]);
         }

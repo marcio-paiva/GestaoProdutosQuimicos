@@ -10,22 +10,13 @@ return new class extends Migration
     {
         Schema::create('product_requests', function (Blueprint $table) {
             $table->id();
-            // Relaciona com o usuário que solicitou
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            
-            // Dados da solicitação baseados no seu Figma
             $table->string('product_name');
             $table->string('cas_number')->nullable();
-            $table->text('justification'); // Por que precisa deste produto?
-            
-            // Status do Workflow
-            // 'pending' (pendente), 'approved' (aprovado), 'rejected' (reprovado)
+            $table->text('justification'); 
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            
-            // Parecer do Avaliador
             $table->text('evaluator_feedback')->nullable();
             $table->foreignId('evaluator_id')->nullable()->constrained('users');
-            
             $table->timestamps();
         });
     }

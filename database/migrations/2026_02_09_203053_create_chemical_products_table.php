@@ -16,12 +16,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('risk_level')->default('Baixo'); 
             $table->boolean('is_approved')->default(false);
-            
-            // --- ADICIONE ESTAS LINHAS ABAIXO ---
-            $table->date('fds_revision_date')->nullable(); // Para a lógica de 2 anos
-            $table->json('pictograms')->nullable();        // Para guardar o array de GHS
-            $table->text('safety_precautions')->nullable(); // Precauções de segurança
-            // ------------------------------------
+            $table->date('fds_revision_date')->nullable(); 
+            $table->json('pictograms')->nullable();        
+            $table->text('safety_precautions')->nullable(); 
+
 
             $table->timestamps();
         });

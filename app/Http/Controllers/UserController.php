@@ -9,9 +9,6 @@ use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
-    /**
-     * Exibe a listagem de usuários (Gestão de Acessos).
-     */
     public function index()
     {
         /** @var \App\Models\User $user */
