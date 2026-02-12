@@ -9,7 +9,7 @@ use App\Http\Controllers\FdsController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return auth()->check() ? redirect()->route('dashboard') : view('welcome');
+    return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
 });
 
 Route::middleware('auth')->group(function () {

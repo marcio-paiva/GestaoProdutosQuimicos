@@ -3,9 +3,20 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+                    <div class="shrink-0 flex items-center">
+                        <a href="{{ route('dashboard') }}" class="flex items-center gap-3 no-underline">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-9 w-auto">
+                                <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/>
+                                <path d="M6.453 15h11.094"/>
+                                <path d="M8.5 2h7"/>
+                            </svg>
+                            
+                            <div class="hidden sm:block">
+                                <span class="text-sm font-black text-gray-800 uppercase tracking-tighter block leading-none">Chemical</span>
+                                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Inventory</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
