@@ -15,6 +15,14 @@ class ChemicalProduct extends Model
         'formula',
         'description',
         'risk_level',
-        'is_approved'
+        'is_approved',
+        'fds_revision_date', 
+        'pictograms', 
+        'safety_precautions'
+    ];
+
+    protected $casts = [
+        'pictograms' => 'array',
+        'fds_revision_date' => 'date', 
     ];
 }

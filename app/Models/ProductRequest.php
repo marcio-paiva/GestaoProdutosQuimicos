@@ -31,4 +31,16 @@ class ProductRequest extends Model
     {
         return $this->belongsTo(User::class, 'evaluator_id');
     }
+
+    // tradutor
+    public function getStatusFormatadoAttribute()
+    {
+        $statusMap = [
+            'pending'  => 'Pendente',
+            'approved' => 'Aprovado',
+            'rejected' => 'Reprovado',
+        ];
+
+        return $statusMap[$this->status] ?? $this->status;
+    }
 }

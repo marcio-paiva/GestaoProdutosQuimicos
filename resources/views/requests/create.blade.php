@@ -26,11 +26,18 @@
                     <td class="px-5 py-4 text-sm font-bold">{{ $req->product_name }}</td>
                     <td class="px-5 py-4 text-sm text-gray-500">{{ $req->cas_number ?? 'N/A' }}</td>
                     <td class="px-5 py-4 text-center">
+                        @php
+                            $statusTraduzido = [
+                                'pending' => 'Pendente',
+                                'approved' => 'Aprovado',
+                                'rejected' => 'Reprovado'
+                            ];
+                        @endphp
                         <span class="px-3 py-1 rounded-full text-xs font-bold uppercase
                             {{ $req->status == 'approved' ? 'bg-green-100 text-green-700' : '' }}
                             {{ $req->status == 'pending' ? 'bg-yellow-100 text-yellow-700' : '' }}
                             {{ $req->status == 'rejected' ? 'bg-red-100 text-red-700' : '' }}">
-                            {{ $req->status }}
+                            {{ $statusTraduzido[$req->status] ?? $req->status }}
                         </span>
                     </td>
                     <td class="px-5 py-4 text-right text-xs text-gray-500">

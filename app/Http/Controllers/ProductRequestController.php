@@ -70,27 +70,51 @@ class ProductRequestController extends Controller
             'evaluator_id' => Auth::id(),
         ]);
 
-        // Se aprovado, podemos automaticamente criar o registro na tabela de produtos
+        // Se aprovado, cria o registro com TODOS os campos técnicos
         if ($validated['status'] === 'approved') {
             ChemicalProduct::create([
-                'name' => $productRequest->product_name,
-                'cas_number' => $productRequest->cas_number,
-                'is_approved' => true,
+                'name'               => $productRequest->product_name,
+                'cas_number'         => $productRequest->cas_number,
+                'fds_revision_date'  => $productRequest->fds_revision_date, // Faltava este
+                'pictograms'         => $productRequest->pictograms,        // Faltava este
+                'safety_precautions' => $productRequest->safety_precautions, // Faltava este
+                'is_approved'        => true,
             ]);
         }
 
         return redirect()->route('requests.index')->with('success', 'Avaliação registrada!');
     }
 
-    public function showEvaluateForm(ProductRequest $productRequest)
-{
-    /** @var User $user */
-    $user = auth()->user();
+    public function approve($id)
+    {
+        $productRequest = ProductRequest::findOrFail($id);
 
-    if (!$user->hasRole('avaliador')) {
-        abort(403, 'Acesso negado.');
+        ChemicalProduct::create([
+            'name'               => $productRequest->product_name,
+            'cas_number'         => $productRequest->cas_number,
+            'fds_revision_date'  => $productRequest->fds_revision_date,
+            'pictograms'         => $productRequest->pictograms,
+            'safety_precautions' => $productRequest->safety_precautions,
+            'is_approved'        => true,
+        ]);
+        
+        $productRequest->update([
+            'status' => 'approved',
+            'evaluator_id' => Auth::id()
+        ]);
+
+        return redirect()->route('requests.index')->with('success', 'Produto aprovado e ficha FDS gerada!');
     }
 
-    return view('requests.evaluate', compact('productRequest'));
-}
+    public function showEvaluateForm(ProductRequest $productRequest)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        if (!$user->hasRole('avaliador') && !$user->hasRole('adm')) {
+            abort(403, 'Acesso negado.');
+        }
+
+        return view('requests.evaluate', compact('productRequest'));
+    }
 }

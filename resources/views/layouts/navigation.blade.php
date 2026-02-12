@@ -13,13 +13,13 @@
                         {{ __('Início') }}
                     </x-nav-link>
 
-                    @if(Auth::user()->hasRole('solicitante'))
+                    @if(Auth::user()->hasRole('solicitante') || Auth::user()->hasRole('adm'))
                         <x-nav-link :href="route('requests.create')" :active="request()->routeIs('requests.create')">
                             {{ __('Solicitar Avaliação') }}
                         </x-nav-link>
                     @endif
 
-                    @if(Auth::user()->hasRole('avaliador'))
+                    @if(Auth::user()->hasRole('avaliador') || Auth::user()->hasRole('adm'))
                         <x-nav-link :href="route('requests.index')" :active="request()->routeIs('requests.index')">
                             {{ __('Avaliar') }}
                         </x-nav-link>
@@ -31,6 +31,10 @@
 
                     <x-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.*')">
                         {{ __('Inventário') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('fds.index')" :active="request()->routeIs('fds.*')">
+                        {{ __('FDS') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -76,13 +80,13 @@
                 {{ __('Início') }}
             </x-responsive-nav-link>
 
-            @if(Auth::user()->hasRole('solicitante'))
+            @if(Auth::user()->hasRole('solicitante') || Auth::user()->hasRole('adm'))
                 <x-responsive-nav-link :href="route('requests.create')" :active="request()->routeIs('requests.create')">
                     {{ __('Solicitar Avaliação') }}
                 </x-responsive-nav-link>
             @endif
 
-            @if(Auth::user()->hasRole('avaliador'))
+            @if(Auth::user()->hasRole('avaliador') || Auth::user()->hasRole('adm'))
                 <x-responsive-nav-link :href="route('requests.index')" :active="request()->routeIs('requests.index')">
                     {{ __('Avaliar') }}
                 </x-responsive-nav-link>
@@ -94,6 +98,10 @@
 
             <x-responsive-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.*')">
                 {{ __('Inventário') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('fds.index')" :active="request()->routeIs('fds.*')">
+                {{ __('FDS') }}
             </x-responsive-nav-link>
         </div>
 

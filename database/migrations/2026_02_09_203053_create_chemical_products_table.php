@@ -10,12 +10,19 @@ return new class extends Migration
     {
         Schema::create('chemical_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nome do produto
-            $table->string('cas_number')->nullable(); // Registro CAS (padrão químico)
-            $table->string('formula')->nullable(); // Fórmula Química
+            $table->string('name'); 
+            $table->string('cas_number')->nullable(); 
+            $table->string('formula')->nullable(); 
             $table->text('description')->nullable();
-            $table->string('risk_level')->default('Baixo'); // Nível de risco
-            $table->boolean('is_approved')->default(false); // Status da avaliação
+            $table->string('risk_level')->default('Baixo'); 
+            $table->boolean('is_approved')->default(false);
+            
+            // --- ADICIONE ESTAS LINHAS ABAIXO ---
+            $table->date('fds_revision_date')->nullable(); // Para a lógica de 2 anos
+            $table->json('pictograms')->nullable();        // Para guardar o array de GHS
+            $table->text('safety_precautions')->nullable(); // Precauções de segurança
+            // ------------------------------------
+
             $table->timestamps();
         });
     }

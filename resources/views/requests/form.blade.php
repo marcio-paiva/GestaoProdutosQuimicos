@@ -77,16 +77,18 @@
             </div>
         </div>
 
-        <div class="mt-8 flex justify-end items-center space-x-4 border-t pt-6">
-            <a href="{{ route('requests.create') }}" class="text-sm text-gray-600 underline hover:text-gray-900 font-medium">
-                Voltar
+        <div class="flex items-center justify-end gap-4 mt-10 border-t border-gray-100 pt-8">
+            <a href="{{ route('requests.create') }}" 
+            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-lg transition shadow-sm font-bold no-underline inline-flex items-center justify-center border border-gray-300 text-sm h-[40px]">
+                Cancelar e Voltar
             </a>
-            
+
             <button type="submit" 
-                style="background-color: #1e3a8a !important; color: white !important; padding: 10px 24px !important; border-radius: 8px !important; font-weight: bold !important; cursor: pointer !important; border: none !important;"
-                class="hover:opacity-90 transition shadow-md">
+            class="bg-blue-600 hover:bg-blue-700 text-white min-w-[180px] px-6 py-2 rounded-lg transition shadow-md font-bold cursor-pointer border-none inline-flex items-center justify-center text-sm h-[40px]">
                 Enviar Solicitação
             </button>
+        </div>
+        </div>
         </div>
     </form>
 </div>

@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProductRequestController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\InventoryController; 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FdsController;
 
 Route::get('/', function () {
     return auth()->check() ? redirect()->route('dashboard') : view('welcome');
@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('inventory', InventoryController::class);
+
+    Route::get('/fds', [FdsController::class, 'index'])->name('fds.index');
     
     Route::get('/requests/new', function() {
                 return view('requests.form');
