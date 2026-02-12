@@ -16,17 +16,22 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Adicionado para gerenciar Solicitante, Avaliador e Admin
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
+        'role',
+        'department',
+        'job_title',
+        'status',
+        'last_login_at',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'last_login_at' => 'datetime', // Cast para trabalhar como Carbon
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     // Helper para verificar permissão

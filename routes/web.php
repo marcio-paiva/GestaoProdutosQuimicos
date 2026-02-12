@@ -6,6 +6,7 @@ use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FdsController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return auth()->check() ? redirect()->route('dashboard') : view('welcome');
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/fds', [FdsController::class, 'index'])->name('fds.index');
     Route::get('/fds/download/{id}', [App\Http\Controllers\FdsController::class, 'downloadFds'])->name('fds.download');
+
+    Route::get('/gestao-acessos', [UserController::class, 'index'])->name('users.index');
+    Route::post('/usuarios/toggle/{user}', [UserController::class, 'toggleStatus'])->name('users.toggle');
     
     Route::get('/requests/new', function() {
                 return view('requests.form');

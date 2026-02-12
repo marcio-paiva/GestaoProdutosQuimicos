@@ -36,6 +36,14 @@
                     <x-nav-link :href="route('fds.index')" :active="request()->routeIs('fds.*')">
                         {{ __('FDS') }}
                     </x-nav-link>
+
+                    @if(auth()->user()->hasRole('adm') || auth()->user()->hasRole('admin'))
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            <div class="flex items-center gap-2">
+                                {{ __('Acessos') }}
+                            </div>
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -103,6 +111,14 @@
             <x-responsive-nav-link :href="route('fds.index')" :active="request()->routeIs('fds.*')">
                 {{ __('FDS') }}
             </x-responsive-nav-link>
+
+            @if(auth()->user()->hasRole('adm') || auth()->user()->hasRole('admin'))
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    <div class="flex items-center gap-2">
+                        {{ __('Acessos') }}
+                    </div>
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200">
