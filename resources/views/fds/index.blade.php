@@ -48,15 +48,15 @@
     </div>
 
     <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
-        <table class="w-full text-left border-collapse">
+        <table class="w-full text-left border-collapse table-fixed">
             <thead class="bg-gray-50/50">
                 <tr>
-                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Produto</th>
-                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">CAS</th>
-                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Classificação GHS</th>
-                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Última Revisão</th>
-                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Status</th>
-                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase text-center">Ações</th>
+                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase w-1/4">Produto</th>
+                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase w-24">CAS</th>
+                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase w-40">Pictograma</th>
+                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase w-32">Última Revisão</th>
+                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase w-28">Status</th>
+                    <th class="p-6 text-[10px] font-bold text-gray-400 uppercase text-center w-32">Ações</th>
                 </tr>
             </thead>
             <tbody id="fdsTableBody" class="divide-y divide-gray-50">
@@ -68,15 +68,11 @@
                     <td class="p-6 font-bold text-gray-800">{{ $product->name }}</td>
                     <td class="p-6 text-sm text-gray-500 font-mono">{{ $product->cas_number }}</td>
                     <td class="p-6">
-                        <div class="flex flex-wrap gap-1">
+                        <div class="text-[11px] text-gray-600 font-bold leading-relaxed" style="word-break: break-word; max-width: 150px;">
                             @if($product->pictograms && is_array($product->pictograms))
-                                @foreach($product->pictograms as $pictogram)
-                                    <span class="bg-gray-100 text-gray-600 text-[9px] px-2 py-0.5 rounded font-bold border border-gray-200 uppercase">
-                                        {{ $pictogram }}
-                                    </span>
-                                @endforeach
+                                {{ implode(', ', $product->pictograms) }}
                             @else
-                                <span class="text-gray-400 text-xs italic">Não classificado</span>
+                                <span class="text-gray-400 text-xs italic font-normal">Não classificado</span>
                             @endif
                         </div>
                     </td>
@@ -88,11 +84,12 @@
                             {{ $isUpdated ? 'Atualizado' : 'Revisar' }}
                         </span>
                     </td>
-                    <td class="p-6 text-center">
-                        <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition font-bold text-xs inline-flex items-center gap-2 border border-gray-300">
-                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                             PDF
-                        </button>
+                    <td class="p-6 text-center" style="min-width: 150px !important;">
+                        <a href="{{ url('/fds/download/' . $product->id) }}" 
+                           class="inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-[10px] no-underline shadow-md hover:bg-blue-700"
+                           style="display: inline-flex !important; visibility: visible !important; min-height: 30px;">
+                            Download
+                        </a>
                     </td>
                 </tr>
                 @endforeach

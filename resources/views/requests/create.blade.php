@@ -6,7 +6,7 @@
     <h2 class="text-2xl font-semibold text-gray-800">Minhas Solicitações</h2>
     
     <a href="{{ route('requests.form') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold">
-        + Nova Solicitação
+        Nova Solicitação
     </a>
 </div>
 

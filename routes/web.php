@@ -26,10 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/storages', [StorageController::class, 'store'])->name('storages.store');
     Route::get('/storages/create', [StorageController::class, 'create'])->name('storages.create');
 
-
     Route::resource('inventory', InventoryController::class);
 
     Route::get('/fds', [FdsController::class, 'index'])->name('fds.index');
+    Route::get('/fds/download/{id}', [App\Http\Controllers\FdsController::class, 'downloadFds'])->name('fds.download');
     
     Route::get('/requests/new', function() {
                 return view('requests.form');
