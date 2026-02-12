@@ -30,44 +30,50 @@
 </div>
 
 <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-    <table class="min-w-full leading-normal" id="inventoryTable">
-        <thead>
-            <tr class="bg-gray-50 border-b border-gray-200 text-gray-600 text-left text-xs uppercase font-bold tracking-wider">
-                <th class="px-5 py-4">Produto</th>
-                <th class="px-5 py-4">Depósito</th>
-                <th class="px-5 py-4">Quantidade</th>
-                <th class="px-5 py-4 text-center">Validade</th>
-                <th class="px-5 py-4 text-right">Lote</th>
+    <table class="w-full text-left border-collapse" id="inventoryTable">
+        <thead class="bg-gray-50/50">
+            <tr>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Produto</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Depósito</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Quantidade</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase text-center">Validade</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase text-right">Lote</th>
             </tr>
         </thead>
-        <tbody class="text-gray-700 divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-50">
             @forelse($inventoryItems as $item)
-                <tr class="hover:bg-gray-50 transition product-row">
-                    <td class="px-5 py-4 text-sm font-bold product-name">{{ $item->product->name }}</td>
-                    <td class="px-5 py-4 text-sm">{{ $item->storage->name }}</td>
-                    <td class="px-5 py-4 text-sm font-semibold">
+                <tr class="hover:bg-gray-50/50 transition-colors product-row">
+                    <td class="p-6 font-bold text-gray-800 product-name">{{ $item->product->name }}</td>
+                    <td class="p-6 text-sm text-gray-600">{{ $item->storage->name }}</td>
+                    <td class="p-6 text-sm font-semibold text-gray-800">
                         {{ number_format($item->quantity, 2, ',', '.') }} {{ $item->unit }}
                     </td>
-                    <td class="px-5 py-4 text-center text-sm">
+                    <td class="p-6 text-center">
                         @if($item->expiration_date)
                             @php
                                 $daysToExpire = \Carbon\Carbon::now()->diffInDays($item->expiration_date, false);
-                                $colorClass = $daysToExpire < 0 ? 'text-red-600 font-bold' : ($daysToExpire < 30 ? 'text-orange-500 font-bold' : 'text-gray-600');
+                                
+                                // Definindo as classes de badge baseadas no prazo
+                                $badgeClass = $daysToExpire < 0 
+                                    ? 'bg-red-50 text-red-600' // Vencido
+                                    : ($daysToExpire < 30 
+                                        ? 'bg-orange-50 text-orange-600' // Alerta (menos de 30 dias)
+                                        : 'bg-green-50 text-green-600'); // No prazo
                             @endphp
-                            <span class="{{ $colorClass }}">
+                            <span class="px-3 py-1 rounded-full text-[9px] font-bold uppercase {{ $badgeClass }}">
                                 {{ \Carbon\Carbon::parse($item->expiration_date)->format('d/m/Y') }}
                             </span>
                         @else
-                            <span class="text-gray-400 italic">N/A</span>
+                            <span class="text-gray-400 text-xs italic">N/A</span>
                         @endif
                     </td>
-                    <td class="px-5 py-4 text-right text-sm text-gray-500">
+                    <td class="p-6 text-right text-sm text-gray-500 font-mono">
                         {{ $item->lot_number ?? '---' }}
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="px-5 py-10 text-center text-gray-500 italic bg-white">
+                    <td colspan="5" class="p-10 text-center text-gray-500 italic bg-white">
                         O estoque está vazio. Realize uma entrada de produto.
                     </td>
                 </tr>

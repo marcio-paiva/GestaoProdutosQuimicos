@@ -8,23 +8,23 @@
 </div>
 
 <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-    <table class="min-w-full leading-normal">
-        <thead>
-            <tr class="bg-gray-50 border-b border-gray-200 text-gray-600 text-left text-xs uppercase font-bold tracking-wider">
-                <th class="px-5 py-4">Produto</th>
-                <th class="px-5 py-4">CAS</th>
-                <th class="px-5 py-4">Solicitante</th>
-                <th class="px-5 py-4 text-center">Status</th>
-                <th class="px-5 py-4 text-right">Ações</th>
+    <table class="w-full text-left border-collapse">
+        <thead class="bg-gray-50/50">
+            <tr>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Produto</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">CAS</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase">Solicitante</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase text-center">Status</th>
+                <th class="p-6 text-[10px] font-bold text-gray-400 uppercase text-right">Ações</th>
             </tr>
         </thead>
-        <tbody class="text-gray-700 divide-y divide-gray-200">
+        <tbody class="divide-y divide-gray-50">
             @forelse($requests as $req)
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-5 py-4 text-sm font-bold">{{ $req->product_name }}</td>
-                    <td class="px-5 py-4 text-sm text-gray-500">{{ $req->cas_number ?? 'N/A' }}</td>
-                    <td class="px-5 py-4 text-sm">{{ $req->requester->name }}</td>
-                    <td class="px-5 py-4 text-center">
+                <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-6 font-bold text-gray-800">{{ $req->product_name }}</td>
+                    <td class="p-6 text-sm text-gray-500 font-mono">{{ $req->cas_number ?? 'N/A' }}</td>
+                    <td class="p-6 text-sm text-gray-600">{{ $req->requester->name }}</td>
+                    <td class="p-6 text-center">
                         @php
                             $statusTraduzido = [
                                 'pending' => 'Pendente',
@@ -33,17 +33,17 @@
                             ];
                         @endphp
 
-                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase
-                            {{ $req->status == 'approved' ? 'bg-green-100 text-green-700' : '' }}
-                            {{ $req->status == 'pending' ? 'bg-yellow-100 text-yellow-700' : '' }}
-                            {{ $req->status == 'rejected' ? 'bg-red-100 text-red-700' : '' }}">
-                            
+                        <span class="px-3 py-1 rounded-full text-[9px] font-bold uppercase
+                            {{ $req->status == 'approved' ? 'bg-green-50 text-green-600' : '' }}
+                            {{ $req->status == 'pending' ? 'bg-orange-50 text-orange-600' : '' }}
+                            {{ $req->status == 'rejected' ? 'bg-red-50 text-red-600' : '' }}">
                             {{ $statusTraduzido[$req->status] ?? $req->status }}
                         </span>
                     </td>
-                    <td class="px-5 py-4 text-right">
-                        @if(Auth::user()->hasRole('avaliador') || Auth::user()->hasRole('adm') && $req->status == 'pending')
-                            <a href="{{ route('requests.evaluate.form', $req->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold no-underline text-xs inline-flex items-center uppercase tracking-wide">
+                    <td class="p-6 text-right">
+                        @if((Auth::user()->hasRole('avaliador') || Auth::user()->hasRole('adm')) && $req->status == 'pending')
+                            <a href="{{ route('requests.evaluate.form', $req->id) }}" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold no-underline text-[10px] inline-flex items-center uppercase tracking-wider h-[35px]">
                                 AVALIAR
                             </a>
                         @endif
@@ -51,7 +51,9 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="px-5 py-10 text-center text-gray-500 italic bg-white">Nenhuma solicitação encontrada.</td>
+                    <td colspan="5" class="p-10 text-center text-gray-500 italic bg-white">
+                        Nenhuma solicitação encontrada.
+                    </td>
                 </tr>
             @endforelse
         </tbody>
