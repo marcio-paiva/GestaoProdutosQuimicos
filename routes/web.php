@@ -22,6 +22,9 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/requests/{productRequest}/evaluate', [ProductRequestController::class, 'evaluate'])->name('requests.evaluate');
     Route::get('/requests/{productRequest}/evaluate', [ProductRequestController::class, 'showEvaluateForm'])->name('requests.evaluate.form');
+    Route::get('/requests/new', function() {
+            return view('requests.form');
+        })->name('requests.form')->middleware('auth');
 
     Route::get('/storages', [StorageController::class, 'index'])->name('storages.index');
     Route::post('/storages', [StorageController::class, 'store'])->name('storages.store');
@@ -34,10 +37,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/gestao-acessos', [UserController::class, 'index'])->name('users.index');
     Route::post('/usuarios/toggle/{user}', [UserController::class, 'toggleStatus'])->name('users.toggle');
-    
-    Route::get('/requests/new', function() {
-                return view('requests.form');
-            })->name('requests.form')->middleware('auth');
+    Route::get('/usuarios/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
 });
 
 require __DIR__.'/auth.php';

@@ -10,7 +10,7 @@
             <p class="text-gray-500 font-medium">Gerencie usuários e permissões do sistema</p>
         </div>
         
-        <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold inline-flex items-center gap-2 h-[40px] no-underline">
+        <a href="{{ route('users.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-md font-bold inline-flex items-center gap-2 h-[40px] no-underline">
             Novo Usuário
         </a>
     </div>

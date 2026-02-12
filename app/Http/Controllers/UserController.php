@@ -25,10 +25,6 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Você pode usar este método para salvar o usuário vindo da tela de Gestão,
-     * centralizando aqui em vez de usar o RegisteredUserController.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -40,22 +36,28 @@ class UserController extends Controller
             'job_title' => ['nullable', 'string', 'max:255'],
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-            'department' => $request->department,
-            'job_title' => $request->job_title,
-            'status' => 'Ativo',
-        ]);
+        try {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+                'department' => $request->department,
+                'job_title' => $request->job_title,
+                'status' => 'Ativo',
+            ]);
 
-        return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso!');
+            return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Erro ao salvar no banco: ' . $e->getMessage()])->withInput();
+        }
     }
 
-    /**
-     * Método para ativar/desativar usuário (Útil para o campo Status do protótipo)
-     */
+    public function create()
+    {
+        return view('users.create');
+    }
+
     public function toggleStatus(User $user)
     {
         $newStatus = $user->status === 'Ativo' ? 'Inativo' : 'Ativo';
