@@ -1,7 +1,7 @@
 # Sistema de Gestão de Produtos Químicos
 
 ## Resumo
-O projeto busca centralizar e profissionalizar o controle de reagentes e substâncias químicas em ambientes laboratoriais ou industriais. O sistema permite a gestão rigorosa de inventário, o controle de armazenamento em múltiplos depósitos e, principalmente, um fluxo de aprovação que garante o controle de segurança aos utilizadores e ao meio ambiente, orientado completamente pela [Ficha de Dados de Segurança](https://tailwindcss.com). O sistema utiliza uma interface limpa e intuitiva, inspirada em dashboards modernos, garantindo que usuários com diferentes níveis de permissão possam operar de forma eficiente e segura.
+O projeto busca centralizar e profissionalizar o controle de reagentes e substâncias químicas em ambientes laboratoriais ou industriais. O sistema permite a gestão rigorosa de inventário, o controle de armazenamento em múltiplos depósitos e, principalmente, um fluxo de aprovação que garante o controle de segurança aos utilizadores e ao meio ambiente, orientado completamente pela [Ficha de Dados de Segurança](https://www.normas.com.br/visualizar/abnt-nbr-nm/21459/abnt-nbr14725-produtos-quimicos-informacoes-sobre-seguranca-saude-e-meio-ambiente-aspectos-gerais-do-sistema-globalmente-harmonizado-ghs-classificacao-fds-e-rotulagem-de-produtos-quimicos). O sistema utiliza uma interface limpa e intuitiva, inspirada em dashboards modernos, garantindo que usuários com diferentes níveis de permissão possam operar de forma eficiente e segura.
 
 ---
 
@@ -30,9 +30,9 @@ O projeto busca centralizar e profissionalizar o controle de reagentes e substâ
 ---
 
 ## 4. Principais Desafios e Dificuldades
-* **Arquitetura MVC:** Organizar a lógica de negócios para que o Admin pudesse gerenciar usuários sem ser deslogado (separando o fluxo de "Auto-registro" do fluxo de "Gestão Administrativa").
-* **Consistência de UI/UX:** Transpor o design idealizado no Figma para o Tailwind CSS, garantindo que os formulários de adição de usuários seguissem o mesmo padrão visual dos formulários de depósito.
-* **Customização do Laravel Breeze:** Adaptar o sistema de autenticação padrão para suportar campos administrativos extras (`role`, `department`, `job_title`).
+* **Vínculo Inventário e Solicitações:** Garantir a integridade dos dados ao conectar cada pedido a um item real do estoque, evitando falhas de rastreio e inconsistências na base de produtos.
+* **Curva de Aprendizado no MVC:** Superar o desafio de separar a lógica de negócio da interface, garantindo que Models, Views e Controllers atuassem de forma independente e organizada.
+* **Consistência Visual e Estilização:** Implementar o design de forma responsiva e padronizada com Tailwind CSS, mantendo a harmonia visual em todos os módulos do sistema.
 
 ---
 
